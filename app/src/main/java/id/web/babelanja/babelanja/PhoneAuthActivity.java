@@ -22,6 +22,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
+import timber.log.Timber;
+
 public class PhoneAuthActivity extends AppCompatActivity {
 
     EditText phoneNumber;
@@ -105,7 +107,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                     @Override
                     public void onCodeAutoRetrievalTimeOut(String s) {
                         verificationId = s;
-                        Log.d("Hmm", "onCodeAutoRetrievalTimeOut");
+                        Timber.d("onCodeAutoRetrievalTimeOut");
                     }
                 }
         );
@@ -126,14 +128,14 @@ public class PhoneAuthActivity extends AppCompatActivity {
         firebaseAuth.getCurrentUser().linkWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Log.d("Hmm", "SMSCredential:success");
+                        Timber.d("SMSCredential:success");
                         Toast.makeText(PhoneAuthActivity.this, "OTP Berhasil", Toast.LENGTH_SHORT).show();
                         Intent intent =  new Intent(PhoneAuthActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
                         // Sign in failed
-                        Log.d("Hmm", "signInWithCredential:failure", task.getException());
+                        Timber.d(task.getException(), "signInWithCredential:failure");
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(PhoneAuthActivity.this, "Kode yang anda masukkan salah", Toast.LENGTH_SHORT).show();
                         }else{

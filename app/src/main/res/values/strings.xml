@@ -1,10 +1,81 @@
 <resources>
     <string name="app_name">Babelanja</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+
+    <string-array name="kabupaten">
+        <item>Bangka</item>
+        <item>Bangka Barat</item>
+        <item>Bangka Selatan</item>
+        <item>Bangka Tengah</item>
+        <item>Belitung</item>
+        <item>Belitung Timur</item>
+        <item>Kota Pangkal Pinang</item>
+    </string-array>
+
+    <string-array name="bangka">
+        <item>Mendo Barat</item>
+        <item>Merawang</item>
+        <item>Puding Besar</item>
+        <item>Sungailiat</item>
+        <item>Pemali</item>
+        <item>Bakam</item>
+        <item>Belinyu</item>
+        <item>Riau Silip</item>
+    </string-array>
+
+    <string-array name="barat">
+        <item>Jebus</item>
+        <item>Kelapa</item>
+        <item>Mentok</item>
+        <item>Parittiga</item>
+        <item>Simpang Teritip</item>
+        <item>Tempilang</item>
+    </string-array>
+
+    <string-array name="selatan">
+        <item>Air Gegas</item>
+        <item>Kepulauan Pongok</item>
+        <item>Lepar Pongok</item>
+        <item>Payung</item>
+        <item>Pulau Besar</item>
+        <item>Simpang Rimba</item>
+        <item>Toboali</item>
+        <item>Tukak Sadai</item>
+    </string-array>
+
+    <string-array name="tengah">
+        <item>Koba</item>
+        <item>Lubuk Besar</item>
+        <item>Namang</item>
+        <item>Pangkalan Baru</item>
+        <item>Simpang Katis</item>
+        <item>Sungai Selan</item>
+    </string-array>
+
+    <string-array name="belitung">
+        <item>Badau</item>
+        <item>Membalong</item>
+        <item>Selat Nasik</item>
+        <item>Sijuk</item>
+        <item>Tanjung Pandan</item>
+    </string-array>
+
+    <string-array name="timur">
+        <item>Damar</item>
+        <item>Dendang</item>
+        <item>Gantung</item>
+        <item>Kelapa Kampit</item>
+        <item>Manggar</item>
+        <item>Simpang Pesak</item>
+        <item>Simpang Renggiang</item>
+    </string-array>
+
+    <string-array name="pinang">
+        <item>Bukit Intan</item>
+        <item>Gabek</item>
+        <item>Gerunggang</item>
+        <item>Girimaya</item>
+        <item>Pangkal Balam</item>
+        <item>Rangkui</item>
+        <item>Taman Sari</item>
+    </string-array>
 </resources>

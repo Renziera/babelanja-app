@@ -9,6 +9,8 @@ import android.os.Handler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import timber.log.Timber;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -21,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-
+        Timber.plant(new Timber.DebugTree());
 
         Handler handler = new Handler();
         handler.postDelayed(() -> {

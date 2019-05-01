@@ -30,6 +30,8 @@ import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
+import timber.log.Timber;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
