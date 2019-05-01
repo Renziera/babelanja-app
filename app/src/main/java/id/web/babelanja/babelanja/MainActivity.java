@@ -33,69 +33,25 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        drawer = findViewById(R.id.drawer_layout);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseApp.initializeApp(this);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("96993615550-kcaich592tha5dn8h8jh071apg2u7pck.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
 
-        final GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        findViewById(R.id.button_sign_in).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(googleSignInClient.getSignInIntent(), 42);
-            }
-        });
-
-        final EditText nomor = findViewById(R.id.phoneNumber);
-
-        findViewById(R.id.button_otp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseApp.initializeApp(MainActivity.this);
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        nomor.getText().toString(),
-                        60,
-                        TimeUnit.SECONDS,
-                        MainActivity.this,
-                        new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                                Toast.makeText(MainActivity.this, "OTP sukses", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onVerificationFailed(FirebaseException e) {
-                                Toast.makeText(MainActivity.this, "OTP gagal", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                );
-                Toast.makeText(MainActivity.this, "OTP terkirim", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -104,43 +60,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_jualan) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_transaksi) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_pesan) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_hadiah) {
+
+        } else if (id == R.id.nav_bantuan) {
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
