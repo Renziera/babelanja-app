@@ -1,11 +1,14 @@
 package id.web.babelanja.babelanja;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -26,18 +29,56 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private void centerTitle() {
+        ArrayList<View> textViews = new ArrayList<>();
+
+        getWindow().getDecorView().findViewsWithText(textViews, getTitle(), View.FIND_VIEWS_WITH_TEXT);
+
+        if(textViews.size() > 0) {
+            AppCompatTextView appCompatTextView = null;
+            if(textViews.size() == 1) {
+                appCompatTextView = (AppCompatTextView) textViews.get(0);
+            } else {
+                for(View v : textViews) {
+                    if(v.getParent() instanceof Toolbar) {
+                        appCompatTextView = (AppCompatTextView) v;
+                        break;
+                    }
+                }
+            }
+
+            if(appCompatTextView != null) {
+                ViewGroup.LayoutParams params = appCompatTextView.getLayoutParams();
+                params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                appCompatTextView.setLayoutParams(params);
+                appCompatTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        centerTitle();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        centerTitle();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("96993615550-kcaich592tha5dn8h8jh071apg2u7pck.apps.googleusercontent.com")

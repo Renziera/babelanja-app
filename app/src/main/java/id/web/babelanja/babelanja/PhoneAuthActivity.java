@@ -41,8 +41,8 @@ public class PhoneAuthActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         phoneNumber = findViewById(R.id.tv_nomor);
-        kode = findViewById(R.id.tv_kode);
-        button_ok = findViewById(R.id.button_ok);
+        kode = findViewById(R.id.tv_nomor);
+        button_ok = findViewById(R.id.button_kirim);
         button_kirim = findViewById(R.id.button_kirim);
 
         button_ok.setVisibility(View.GONE);
@@ -79,14 +79,14 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                        Log.d("Hmm", "SMS Verification suceeded: " + phoneAuthCredential);
+                        Timber.d("SMS Verification suceeded: %s", phoneAuthCredential);
                         linkCredential(phoneAuthCredential);
                     }
 
                     @Override
                     public void onVerificationFailed(FirebaseException e) {
                         Toast.makeText(PhoneAuthActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
-                        Log.d("Hmm", "onVerificationFailed: " + e.getMessage());
+                        Timber.d("onVerificationFailed: %s", e.getMessage());
                         e.printStackTrace();
                         phoneNumber.setVisibility(View.VISIBLE);
                         button_kirim.setVisibility(View.VISIBLE);
