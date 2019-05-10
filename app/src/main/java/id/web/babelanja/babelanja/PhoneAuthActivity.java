@@ -7,16 +7,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import timber.log.Timber;
@@ -30,6 +33,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
     Button button_kirimUlang;
     View isi_nomor;
     View isi_kode;
+    TextView tv_nomorPreview;
 
     String verificationId;
     String nomor;
@@ -45,7 +49,10 @@ public class PhoneAuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(getIntent().getBooleanExtra("edit", false)){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         getSupportActionBar().setTitle("Verifikasi");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
@@ -53,16 +60,29 @@ public class PhoneAuthActivity extends AppCompatActivity {
         kode = findViewById(R.id.tv_kode);
         button_lanjut = findViewById(R.id.button_lanjut);
         button_kirim = findViewById(R.id.button_kirim);
+        button_kirimUlang = findViewById(R.id.button_kirimUlang);
+        isi_kode = findViewById(R.id.isi_kode);
+        isi_nomor = findViewById(R.id.isi_nomor);
+        tv_nomorPreview = findViewById(R.id.tv_nomorPreview);
 
-        button_lanjut.setVisibility(View.GONE);
-        kode.setVisibility(View.GONE);
+        isi_nomor.setVisibility(View.VISIBLE);
+        isi_kode.setVisibility(View.GONE);
+
+        button_kirimUlang.setOnClickListener(v -> {
+            isi_nomor.setVisibility(View.VISIBLE);
+            isi_kode.setVisibility(View.GONE);
+            button_kirim.setEnabled(true);
+            button_lanjut.setEnabled(true);
+        });
 
         button_kirim.setOnClickListener(v -> {
             verifyPhoneNumber();
+            button_kirim.setEnabled(false);
         });
 
         button_lanjut.setOnClickListener(v -> {
             verifyOTP();
+            button_lanjut.setEnabled(false);
         });
 
     }
@@ -71,7 +91,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
         //Ingat pakai +6281322209955 di emulator, code nya 123456
         String number = phoneNumber.getText().toString();
         if(number.isEmpty()){
-            Toast.makeText(this, "Nomor HP tidak boleh kosong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nomor telepon tidak boleh kosong", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -79,6 +99,9 @@ public class PhoneAuthActivity extends AppCompatActivity {
             number = "+62" + number.substring(1);
         }
 
+        nomor = number;
+        tv_nomorPreview.setText("Kode verifikasi telah dikirim melalui SMS ke nomor\n" + nomor);
+        kode.setText("");
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
@@ -89,6 +112,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                         Timber.d("SMS Verification suceeded: %s", phoneAuthCredential);
+                        updateDatabase();
                     }
 
                     @Override
@@ -96,18 +120,15 @@ public class PhoneAuthActivity extends AppCompatActivity {
                         Toast.makeText(PhoneAuthActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                         Timber.d("onVerificationFailed: %s", e.getMessage());
                         e.printStackTrace();
-                        phoneNumber.setVisibility(View.VISIBLE);
-                        button_kirim.setVisibility(View.VISIBLE);
-                        button_lanjut.setVisibility(View.GONE);
-                        kode.setVisibility(View.GONE);
+                        isi_nomor.setVisibility(View.VISIBLE);
+                        isi_kode.setVisibility(View.GONE);
+                        button_kirim.setEnabled(true);
                     }
 
                     @Override
                     public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                        phoneNumber.setVisibility(View.GONE);
-                        button_kirim.setVisibility(View.GONE);
-                        button_lanjut.setVisibility(View.VISIBLE);
-                        kode.setVisibility(View.VISIBLE);
+                        isi_nomor.setVisibility(View.GONE);
+                        isi_kode.setVisibility(View.VISIBLE);
                         Toast.makeText(PhoneAuthActivity.this, "SMS kode telah terkirim", Toast.LENGTH_SHORT).show();
                         verificationId = s;
                     }
@@ -137,42 +158,72 @@ public class PhoneAuthActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Timber.d("SMSCredential:success");
-                        Toast.makeText(PhoneAuthActivity.this, "OTP Berhasil", Toast.LENGTH_SHORT).show();
-                        Intent intent =  new Intent(PhoneAuthActivity.this, MainActivity.class);
                         firebaseAuth.getCurrentUser().unlink(PhoneAuthProvider.PROVIDER_ID);
-                        startActivity(intent);
-                        finish();
+                        updateDatabase();
                     } else {
                         // Sign in failed
                         Timber.d(task.getException(), "signInWithCredential:failure");
-                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(PhoneAuthActivity.this, "Kode yang anda masukkan salah", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(PhoneAuthActivity.this, "Terjadi kesalahan. Apakah nomor anda sudah pernah didaftarkan ?", Toast.LENGTH_SHORT).show();
-                        }
-                        phoneNumber.setVisibility(View.VISIBLE);
-                        button_kirim.setVisibility(View.VISIBLE);
-                        button_lanjut.setVisibility(View.GONE);
-                        kode.setVisibility(View.GONE);
+                        Toast.makeText(this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                        isi_nomor.setVisibility(View.VISIBLE);
+                        isi_kode.setVisibility(View.GONE);
+                        button_kirim.setEnabled(true);
+                        button_lanjut.setEnabled(true);
                     }
                 });
     }
 
-    private void updateDatabase(String phoneNumber){
+    private void updateDatabase(){
+        Toast.makeText(PhoneAuthActivity.this, "OTP Berhasil", Toast.LENGTH_SHORT).show();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("toko")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .update("telepon", phoneNumber,
-                        "email", FirebaseAuth.getInstance().getCurrentUser().getEmail(),
-                        "timestamp_join", FieldValue.serverTimestamp())
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }else{
-                        Toast.makeText(this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        if(getIntent().getBooleanExtra("edit", false)){
+            db.collection("toko")
+                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .update("telepon", nomor,
+                            "timestamp_update_phone", FieldValue.serverTimestamp())
+                    .addOnCompleteListener(task -> {
+                        if(task.isSuccessful()){
+                            Toast.makeText(this, "Berhasil mengubah nomor telepon", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else{
+                            Timber.d(task.getException());
+                            Toast.makeText(this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
+                            isi_nomor.setVisibility(View.VISIBLE);
+                            isi_kode.setVisibility(View.GONE);
+                            button_kirim.setEnabled(true);
+                            button_lanjut.setEnabled(true);
+                        }
+                    });
+        }else{
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Map<String, Object> data = new HashMap<>();
+            data.put("nama", user.getDisplayName());
+            data.put("email", user.getEmail());
+            data.put("telepon", nomor);
+            data.put("foto", user.getPhotoUrl().toString());
+            data.put("timestamp_sign_up", FieldValue.serverTimestamp());
+            data.put("deskripsi", "");
+            data.put("alamat", "");
+            data.put("kecamatan", "");
+            data.put("kabupaten", "");
+
+            db.collection("toko")
+                    .document(user.getUid())
+                    .set(data)
+                    .addOnCompleteListener(task -> {
+                       if(task.isSuccessful()){
+                           Intent intent = new Intent(PhoneAuthActivity.this, ProfilActivity.class);
+                           startActivity(intent);
+                           finish();
+                       }else{
+                           Timber.d(task.getException());
+                           Toast.makeText(this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
+                           isi_nomor.setVisibility(View.VISIBLE);
+                           isi_kode.setVisibility(View.GONE);
+                           button_kirim.setEnabled(true);
+                           button_lanjut.setEnabled(true);
+                       }
+                    });
+        }
+
     }
 }

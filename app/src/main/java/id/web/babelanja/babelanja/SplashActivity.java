@@ -45,11 +45,7 @@ public class SplashActivity extends AppCompatActivity {
                                Intent intent;
                                DocumentSnapshot document = task.getResult();
                                if(document.exists()){
-                                    if(document.getString("nama") == null){
-                                        intent = new Intent(SplashActivity.this, DaftarActivity.class);
-                                    }else{
-                                        intent = new Intent(SplashActivity.this, MainActivity.class);
-                                    }
+                                   intent = new Intent(SplashActivity.this, MainActivity.class);
                                }else{
                                    intent = new Intent(SplashActivity.this, PhoneAuthActivity.class);
                                }

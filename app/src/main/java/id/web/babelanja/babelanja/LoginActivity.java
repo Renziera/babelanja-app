@@ -102,11 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                                         Intent intent;
                                         DocumentSnapshot document = task1.getResult();
                                         if(document.exists()){
-                                            if(document.getString("nama") == null){
-                                                intent = new Intent(LoginActivity.this, DaftarActivity.class);
-                                            }else{
-                                                intent = new Intent(LoginActivity.this, MainActivity.class);
-                                            }
+                                            intent = new Intent(LoginActivity.this, MainActivity.class);
                                         }else{
                                             intent = new Intent(LoginActivity.this, PhoneAuthActivity.class);
                                         }

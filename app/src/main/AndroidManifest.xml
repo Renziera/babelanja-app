@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DaftarActivity"></activity>
+        <activity android:name=".BantuanActivity"></activity>
+        <activity android:name=".ProfilActivity" />
         <activity android:name=".PhoneAuthActivity" />
         <activity
             android:name=".LoginActivity"
