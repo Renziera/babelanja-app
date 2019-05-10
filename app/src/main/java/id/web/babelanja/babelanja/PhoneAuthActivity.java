@@ -1,24 +1,21 @@
 package id.web.babelanja.babelanja;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,38 +25,50 @@ public class PhoneAuthActivity extends AppCompatActivity {
 
     EditText phoneNumber;
     EditText kode;
-    Button button_ok;
+    Button button_lanjut;
     Button button_kirim;
+    Button button_kirimUlang;
+    View isi_nomor;
+    View isi_kode;
 
     String verificationId;
+    String nomor;
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_auth);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Verifikasi");
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-        phoneNumber = findViewById(R.id.tv_nomor);
-        kode = findViewById(R.id.tv_nomor);
-        button_ok = findViewById(R.id.button_kirim);
+        phoneNumber = findViewById(R.id.tv_phoneNumber);
+        kode = findViewById(R.id.tv_kode);
+        button_lanjut = findViewById(R.id.button_lanjut);
         button_kirim = findViewById(R.id.button_kirim);
 
-        button_ok.setVisibility(View.GONE);
+        button_lanjut.setVisibility(View.GONE);
         kode.setVisibility(View.GONE);
 
         button_kirim.setOnClickListener(v -> {
             verifyPhoneNumber();
         });
 
-        button_ok.setOnClickListener(v -> {
+        button_lanjut.setOnClickListener(v -> {
             verifyOTP();
         });
 
     }
 
     private void verifyPhoneNumber(){
-        //Ingat pakai +6281322209955 di emulator, code nya 234765
+        //Ingat pakai +6281322209955 di emulator, code nya 123456
         String number = phoneNumber.getText().toString();
         if(number.isEmpty()){
             Toast.makeText(this, "Nomor HP tidak boleh kosong", Toast.LENGTH_SHORT).show();
@@ -80,7 +89,6 @@ public class PhoneAuthActivity extends AppCompatActivity {
                     @Override
                     public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                         Timber.d("SMS Verification suceeded: %s", phoneAuthCredential);
-                        linkCredential(phoneAuthCredential);
                     }
 
                     @Override
@@ -90,7 +98,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                         e.printStackTrace();
                         phoneNumber.setVisibility(View.VISIBLE);
                         button_kirim.setVisibility(View.VISIBLE);
-                        button_ok.setVisibility(View.GONE);
+                        button_lanjut.setVisibility(View.GONE);
                         kode.setVisibility(View.GONE);
                     }
 
@@ -98,7 +106,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                     public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         phoneNumber.setVisibility(View.GONE);
                         button_kirim.setVisibility(View.GONE);
-                        button_ok.setVisibility(View.VISIBLE);
+                        button_lanjut.setVisibility(View.VISIBLE);
                         kode.setVisibility(View.VISIBLE);
                         Toast.makeText(PhoneAuthActivity.this, "SMS kode telah terkirim", Toast.LENGTH_SHORT).show();
                         verificationId = s;
@@ -131,6 +139,7 @@ public class PhoneAuthActivity extends AppCompatActivity {
                         Timber.d("SMSCredential:success");
                         Toast.makeText(PhoneAuthActivity.this, "OTP Berhasil", Toast.LENGTH_SHORT).show();
                         Intent intent =  new Intent(PhoneAuthActivity.this, MainActivity.class);
+                        firebaseAuth.getCurrentUser().unlink(PhoneAuthProvider.PROVIDER_ID);
                         startActivity(intent);
                         finish();
                     } else {
@@ -143,8 +152,26 @@ public class PhoneAuthActivity extends AppCompatActivity {
                         }
                         phoneNumber.setVisibility(View.VISIBLE);
                         button_kirim.setVisibility(View.VISIBLE);
-                        button_ok.setVisibility(View.GONE);
+                        button_lanjut.setVisibility(View.GONE);
                         kode.setVisibility(View.GONE);
+                    }
+                });
+    }
+
+    private void updateDatabase(String phoneNumber){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("toko")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .update("telepon", phoneNumber,
+                        "email", FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                        "timestamp_join", FieldValue.serverTimestamp())
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+                        Intent intent = new Intent(PhoneAuthActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else{
+                        Toast.makeText(this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

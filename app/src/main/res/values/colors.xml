@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#00B900</color>
-    <color name="colorPrimaryDark">#00B900</color>
+    <color name="colorPrimaryDark">#219653</color>
     <color name="colorAccent">#77DA29</color>
     <color name="hijauMuda">#A5DE78</color>
     <color name="putih">#FFFFFF</color>
     <color name="hitam">#000000</color>
     <color name="abu">#868686</color>
-    <color name="ic_launcher_background">#00B900</color>
 </resources>
