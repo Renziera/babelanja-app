@@ -28,7 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
-            android:maxLength="16"
+            android:maxLength="20"
+            android:singleLine="true"
             android:textColor="@color/putih"
             android:textSize="18sp" />
 
@@ -37,7 +38,7 @@
             style="@style/ImageButtonClear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_marginStart="8dp"
             app:srcCompat="@drawable/edit" />
     </LinearLayout>
 

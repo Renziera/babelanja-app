@@ -39,10 +39,39 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/menu_side_nav"
         android:background="@color/colorPrimary"
-        android:theme="@style/NavTheme"/>
+        android:fitsSystemWindows="false"
+        android:theme="@style/NavTheme"
+        app:headerLayout="@layout/nav_header_main"
+        app:itemIconPadding="16dp"
+        app:itemIconSize="32dp"
+        app:itemIconTint="@color/putih"
+        app:itemTextColor="@color/putih"
+        app:menu="@menu/menu_side_nav" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/putih" />
+
+            <Button
+                android:id="@+id/button_tentang"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:text="Tentang Babelanja"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

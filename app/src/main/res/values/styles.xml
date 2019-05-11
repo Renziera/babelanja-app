@@ -22,6 +22,7 @@
     <style name="NavTheme" parent="AppThemeNoActionBar">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/putih</item>
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
     <style name="ImageButtonClear" parent="Widget.AppCompat.ImageButton">

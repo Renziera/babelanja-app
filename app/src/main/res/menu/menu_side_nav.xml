@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_jualan"
             android:icon="@drawable/ic_jualan"
-            android:title="Jualan Saya"/>
+            android:title="Jualan Saya" />
         <item
             android:id="@+id/nav_transaksi"
             android:icon="@drawable/ic_transaksi"
