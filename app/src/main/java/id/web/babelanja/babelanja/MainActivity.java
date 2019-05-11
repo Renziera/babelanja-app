@@ -58,6 +58,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, ProfilActivity.class);
             startActivity(intent);
         });
+
+        findViewById(R.id.button_tentang).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, TentangActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -95,20 +100,19 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_jualan:
-
+                startActivity(new Intent(MainActivity.this, JualanActivity.class));
                 break;
             case R.id.nav_transaksi:
-
+                startActivity(new Intent(MainActivity.this, TransaksiActivity.class));
                 break;
             case R.id.nav_pesan:
-
+                startActivity(new Intent(MainActivity.this, PesanActivity.class));
                 break;
             case R.id.nav_hadiah:
-
+                startActivity(new Intent(MainActivity.this, HadiahActivity.class));
                 break;
             case R.id.nav_bantuan:
-                Intent intent = new Intent(MainActivity.this, BantuanActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, BantuanActivity.class));
                 break;
             case R.id.nav_beranda:
                 getSupportFragmentManager()

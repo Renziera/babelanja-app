@@ -15,7 +15,7 @@ public class ProfilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daftar);
+        setContentView(R.layout.activity_profil);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("toko").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).get()

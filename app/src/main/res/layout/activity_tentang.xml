@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TentangActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Babelanja adalah sarana jual beli bagi warga Bangka Belitung yang dibuat untuk memperbaiki dan mempermudah sistem pemasaran via COD (Langsung) dengan pertemuan pembeli, penjual, penjaja dan pengguna barang/ jasa yang ada di Bangka Belitung.\n\nBelanja di Babel? Babelanja aja!\n\nInfo lebih lanjut hubungi\n+6281000999875\ncs@babelanja.web.id"
+        android:textColor="@color/abu"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

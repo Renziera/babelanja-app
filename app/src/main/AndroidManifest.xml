@@ -11,7 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BantuanActivity"></activity>
+        <activity android:name=".NotifikasiActivity"></activity>
+        <activity android:name=".HadiahActivity" />
+        <activity android:name=".PesanActivity" />
+        <activity android:name=".TransaksiActivity" />
+        <activity android:name=".JualanActivity" />
+        <activity android:name=".TentangActivity" />
+        <activity android:name=".BantuanActivity" />
         <activity android:name=".ProfilActivity" />
         <activity android:name=".PhoneAuthActivity" />
         <activity
