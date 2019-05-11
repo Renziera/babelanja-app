@@ -12,10 +12,10 @@
     </string-array>
 
     <string-array name="bangka">
+        <item>Sungailiat</item>
         <item>Mendo Barat</item>
         <item>Merawang</item>
         <item>Puding Besar</item>
-        <item>Sungailiat</item>
         <item>Pemali</item>
         <item>Bakam</item>
         <item>Belinyu</item>
@@ -79,6 +79,41 @@
         <item>Taman Sari</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="jasa">
+        <item>Acara</item>
+        <item>Angkutan</item>
+        <item>Bengkel</item>
+        <item>Desain</item>
+        <item>Editor</item>
+        <item>Fotografi</item>
+        <item>Internet</item>
+        <item>Jahit</item>
+        <item>Konstruksi</item>
+        <item>Kursus</item>
+        <item>Pariwisata</item>
+        <item>Pijat</item>
+        <item>Rias</item>
+        <item>Servis Elektronik</item>
+        <item>Videografi</item>
+    </string-array>
+
+    <string-array name="barang">
+        <item>Fashion Pria</item>
+        <item>Fashion Wanita</item>
+        <item>Aksesori</item>
+        <item>Tas</item>
+        <item>Sepatu</item>
+        <item>Kosmetik</item>
+        <item>Makanan dan Minuman</item>
+        <item>Pertanian dan Hasil Laut</item>
+        <item>Perlengkapan Rumah Tangga</item>
+        <item>Elektronik</item>
+        <item>Alat Tulis Kantor</item>
+        <item>Kendaraan</item>
+        <item>Hobi dan Koleksi</item>
+        <item>Kerajinan</item>
+        <item>Kesehatan dan Olahraga</item>
+        <item>Bahan Bangunan</item>
+    </string-array>
+
 </resources>

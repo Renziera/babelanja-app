@@ -56,12 +56,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.getHeaderView(0)
                 .findViewById(R.id.button_edit_profile).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ProfilActivity.class);
+            intent.putExtra("edit", true);
             startActivity(intent);
+            drawer.closeDrawer(GravityCompat.START);
         });
 
         findViewById(R.id.button_tentang).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, TentangActivity.class);
             startActivity(intent);
+            drawer.closeDrawer(GravityCompat.START);
         });
     }
 

@@ -25,6 +25,10 @@
         <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
+    <style name="SplashTheme" parent="AppThemeNoActionBar">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+    </style>
+
     <style name="ImageButtonClear" parent="Widget.AppCompat.ImageButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
     </style>

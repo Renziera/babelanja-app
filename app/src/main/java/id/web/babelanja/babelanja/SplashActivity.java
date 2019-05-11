@@ -21,8 +21,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        getSupportActionBar().hide();
-
         Timber.plant(new Timber.DebugTree());
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -35,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent;
                 intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }else{
                 String uid = user.getUid();
                 Timber.d("UID: %s", uid);

@@ -201,10 +201,6 @@ public class PhoneAuthActivity extends AppCompatActivity {
             data.put("telepon", nomor);
             data.put("foto", user.getPhotoUrl().toString());
             data.put("timestamp_sign_up", FieldValue.serverTimestamp());
-            data.put("deskripsi", "");
-            data.put("alamat", "");
-            data.put("kecamatan", "");
-            data.put("kabupaten", "");
 
             db.collection("toko")
                     .document(user.getUid())

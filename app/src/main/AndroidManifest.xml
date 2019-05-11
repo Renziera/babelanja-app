@@ -8,18 +8,37 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NotifikasiActivity"></activity>
-        <activity android:name=".HadiahActivity" />
-        <activity android:name=".PesanActivity" />
-        <activity android:name=".TransaksiActivity" />
-        <activity android:name=".JualanActivity" />
-        <activity android:name=".TentangActivity" />
-        <activity android:name=".BantuanActivity" />
-        <activity android:name=".ProfilActivity" />
-        <activity android:name=".PhoneAuthActivity" />
+        <activity android:name=".TambahJualanActivity"></activity>
+        <activity
+            android:name=".NotifikasiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HadiahActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PesanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TransaksiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JualanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TentangActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BantuanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PhoneAuthActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
@@ -30,7 +49,8 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity
             android:name=".SplashActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
