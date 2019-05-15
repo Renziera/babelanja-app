@@ -6,4 +6,189 @@
     android:layout_height="match_parent"
     tools:context=".TambahJualanActivity">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Foto"
+                android:textColor="@color/hitam"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/foto_1"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/foto_2"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/foto_3"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/foto_4"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/foto_5"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/foto_6"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/foto_7"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginEnd="16dp"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/button_pick"
+                        style="@style/ImageButtonClear"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:foreground="@drawable/ic_camera"
+                        android:foregroundGravity="center" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Keterangan"
+                    android:textColor="@color/hitam"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <ToggleButton
+                    android:id="@+id/toggleButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOff="Jasa"
+                    android:textOn="Barang"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="50">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinnerKategori"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:entries="@array/barang"
+                android:spinnerMode="dialog" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="1024">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_deskripsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Deskripsi"
+                    android:imeOptions="actionNext"
+                    android:inputType="textMultiLine"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:counterEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tv_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Harga"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

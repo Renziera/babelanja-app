@@ -98,22 +98,22 @@
     </string-array>
 
     <string-array name="barang">
+        <item>Aksesori</item>
+        <item>Alat Tulis Kantor</item>
+        <item>Bahan Bangunan</item>
+        <item>Elektronik</item>
         <item>Fashion Pria</item>
         <item>Fashion Wanita</item>
-        <item>Aksesori</item>
-        <item>Tas</item>
-        <item>Sepatu</item>
-        <item>Kosmetik</item>
-        <item>Makanan dan Minuman</item>
-        <item>Pertanian dan Hasil Laut</item>
-        <item>Perlengkapan Rumah Tangga</item>
-        <item>Elektronik</item>
-        <item>Alat Tulis Kantor</item>
-        <item>Kendaraan</item>
         <item>Hobi dan Koleksi</item>
+        <item>Kendaraan</item>
         <item>Kerajinan</item>
         <item>Kesehatan dan Olahraga</item>
-        <item>Bahan Bangunan</item>
+        <item>Kosmetik</item>
+        <item>Makanan dan Minuman</item>
+        <item>Perlengkapan Rumah Tangga</item>
+        <item>Pertanian dan Hasil Laut</item>
+        <item>Sepatu</item>
+        <item>Tas</item>
     </string-array>
 
 </resources>
