@@ -1,18 +1,19 @@
-package id.web.babelanja.babelanja;
-
-import androidx.appcompat.app.AppCompatActivity;
+package id.babelanja;
 
 import android.os.Bundle;
 
-public class PesanActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class BantuanActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pesan);
+        setContentView(R.layout.activity_bantuan);
 
-        getSupportActionBar().setTitle("Pesan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Bantuan");
     }
 
     @Override

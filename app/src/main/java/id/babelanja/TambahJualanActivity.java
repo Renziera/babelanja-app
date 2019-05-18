@@ -1,4 +1,4 @@
-package id.web.babelanja.babelanja;
+package id.babelanja;
 
 import android.content.DialogInterface;
 import android.content.Intent;

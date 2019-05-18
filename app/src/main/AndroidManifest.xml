@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="id.web.babelanja.babelanja">
+    package="id.babelanja">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,16 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TambahJualanActivity"></activity>
+        <activity
+            android:name=".SearchActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".DetailActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".TambahJualanActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".NotifikasiActivity"
             android:screenOrientation="portrait" />

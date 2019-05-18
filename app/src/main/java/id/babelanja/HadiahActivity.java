@@ -1,17 +1,17 @@
-package id.web.babelanja.babelanja;
+package id.babelanja;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class TransaksiActivity extends AppCompatActivity {
+public class HadiahActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaksi);
+        setContentView(R.layout.activity_hadiah);
 
-        getSupportActionBar().setTitle("Transaksi");
+        getSupportActionBar().setTitle("Hadiah");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

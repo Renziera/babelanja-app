@@ -1,4 +1,4 @@
-package id.web.babelanja.babelanja;
+package id.babelanja;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("id.web.babelanja.babelanja", appContext.getPackageName());
+        assertEquals("id.babelanja", appContext.getPackageName());
     }
 }
