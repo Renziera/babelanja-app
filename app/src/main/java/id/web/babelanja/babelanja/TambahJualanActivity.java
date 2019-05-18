@@ -78,13 +78,19 @@ public class TambahJualanActivity extends AppCompatActivity {
 
         if(edit){
             getSupportActionBar().setTitle("Edit Jualan");
-            button_hapus.setOnClickListener(v -> new AlertDialog.Builder(this)
+            button_hapus.setOnClickListener(v -> {
+                AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setMessage("Apakah anda yakin ingin menghapus jualan ini ?")
                     .setPositiveButton("Ya, saya yakin", (dialog, which) -> {
                         deleteItem();
                     })
                     .setNeutralButton("Tidak", null)
-                    .show());
+                    .show();
+                alertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
+                        .setTextColor(getResources().getColor(R.color.merah));
+                alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+                        .setTextColor(getResources().getColor(R.color.abu));
+            });
         }else{
             getSupportActionBar().setTitle("Tambah Jualan");
             button_hapus.setVisibility(View.GONE);
@@ -190,12 +196,12 @@ public class TambahJualanActivity extends AppCompatActivity {
             docRef.get()
                     .addOnSuccessListener(documentSnapshot -> {
                         if(documentSnapshot.getBoolean("barang")){
-                            toggle.setChecked(true);
-                            spinnerKategori.setSelection(Arrays.asList(getResources().getStringArray(R.array.jasa))
-                                    .indexOf(documentSnapshot.getString("kategori")));
-                        }else{
                             tv_stok.setText(documentSnapshot.getLong("stok").toString());
                             spinnerKategori.setSelection(Arrays.asList(getResources().getStringArray(R.array.barang))
+                                    .indexOf(documentSnapshot.getString("kategori")));
+                        }else{
+                            toggle.setChecked(true);
+                            spinnerKategori.setSelection(Arrays.asList(getResources().getStringArray(R.array.jasa))
                                     .indexOf(documentSnapshot.getString("kategori")));
                         }
                         tv_nama.setText(documentSnapshot.getString("nama"));
@@ -218,7 +224,7 @@ public class TambahJualanActivity extends AppCompatActivity {
     }
 
     private boolean validasi(){
-        if(imageList.isEmpty()){
+        if(imageList.isEmpty() && !edit){
             Toast.makeText(this, "Cantumkan minimal 1 foto", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -242,6 +248,10 @@ public class TambahJualanActivity extends AppCompatActivity {
     }
 
     private void uploadGambar(){
+        if(imageList.isEmpty() && edit){
+            updateDatabase();
+            return;
+        }
         urlList.clear();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference stoRef = storage.getReference(uid);
@@ -268,7 +278,7 @@ public class TambahJualanActivity extends AppCompatActivity {
     }
 
     private void updateDatabase(){
-        if(urlList.size() != imageList.size()){
+        if(urlList.size() != imageList.size() && !edit){
             return;
         }
 
@@ -348,6 +358,10 @@ public class TambahJualanActivity extends AppCompatActivity {
                 .continueWithTask(task -> {
                     DocumentReference itemRef = task.getResult().getDocumentReference("ref");
                     DocumentReference tokoRef = task.getResult().getReference();
+                    urlList = (List<String>) task.getResult().get("foto");
+                    for (int i = 1; i < urlList.size(); i++) {
+                        FirebaseStorage.getInstance().getReferenceFromUrl(urlList.get(i)).delete();
+                    }
                     batch.delete(itemRef);
                     batch.delete(tokoRef);
                     return batch.commit();
