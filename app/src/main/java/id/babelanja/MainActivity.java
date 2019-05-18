@@ -17,9 +17,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -145,5 +148,28 @@ public class MainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void pilihKategori(View v){
+        Intent intent = new Intent(this, SearchActivity.class);
+        switch (v.getId()){
+            case R.id.kt_elektronik:
+                Timber.d("Elektronik");
+                break;
+            case R.id.kt_aksesori:
+                break;
+            case R.id.kt_hobi:
+                break;
+            case R.id.kt_tas:
+                break;
+            case R.id.kt_angkutan:
+                break;
+            case R.id.kt_desain:
+                break;
+            case R.id.kt_editor:
+                break;
+            case R.id.kt_fotografi:
+                break;
+        }
     }
 }

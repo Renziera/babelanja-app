@@ -81,9 +81,7 @@ public class TambahJualanActivity extends AppCompatActivity {
             button_hapus.setOnClickListener(v -> {
                 AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setMessage("Apakah anda yakin ingin menghapus jualan ini ?")
-                    .setPositiveButton("Ya, saya yakin", (dialog, which) -> {
-                        deleteItem();
-                    })
+                    .setPositiveButton("Ya, saya yakin", (dialog, which) -> deleteItem())
                     .setNeutralButton("Tidak", null)
                     .show();
                 alertDialog.getButton(DialogInterface.BUTTON_POSITIVE)
