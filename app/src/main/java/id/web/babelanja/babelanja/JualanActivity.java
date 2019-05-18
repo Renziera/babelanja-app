@@ -22,6 +22,12 @@ public class JualanActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        
+    }
+
+    @Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
