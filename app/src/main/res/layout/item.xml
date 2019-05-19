@@ -29,12 +29,49 @@
                 android:id="@+id/tv_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="4dp"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="2"
                 android:textColor="@color/colorPrimary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_kuantitas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:fontFamily="@font/montserrat"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_harga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:fontFamily="@font/montserrat"
+                android:maxLines="2"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="gone" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="5"
+                android:stepSize="0.1"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/button_edit"
@@ -45,7 +82,20 @@
                 android:minHeight="0dp"
                 android:text="Edit"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_hapus"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:text="Hapus"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

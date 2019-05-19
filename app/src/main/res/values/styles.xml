@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -45,6 +45,14 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:layout_marginStart">32dp</item>
         <item name="android:layout_marginEnd">32dp</item>
+    </style>
+
+    <style name="ratingBar" parent="Widget.AppCompat.RatingBar.Small">
+        <item name="android:numStars">5</item>
+        <item name="android:isIndicator">true</item>
+        <item name="colorControlNormal">@color/gold</item>
+        <item name="colorControlActivated">@color/gold</item>
+        <item name="android:progressTint" tools:ignore="NewApi">@color/gold</item>
     </style>
 
 

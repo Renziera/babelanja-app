@@ -7,7 +7,7 @@
     tools:context=".SearchActivity">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/button_search"
         style="@style/ImageButtonClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,4 +16,488 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_search" />
+
+    <EditText
+        android:id="@+id/tv_search"
+        android:layout_width="0dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_search"
+        android:fontFamily="@font/montserrat"
+        android:hint="Pencarian"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:padding="8dp"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/toggle"
+        app:layout_constraintStart_toEndOf="@+id/button_search"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:button="@drawable/toggle"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:textOff=""
+        android:textOn=""
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollViewBarang"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/hijauMuda"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/kt_fashion_pria"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="center"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_fashion_pria" />
+
+            <ImageButton
+                android:id="@+id/kt_fashion_wanita"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="center"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_fashion_wanita" />
+
+            <ImageButton
+                android:id="@+id/kt_aksesori"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="center"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_aksesori" />
+
+            <ImageButton
+                android:id="@+id/kt_tas"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="center"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_tas" />
+
+            <ImageButton
+                android:id="@+id/kt_sepatu"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_sepatu" />
+
+            <ImageButton
+                android:id="@+id/kt_kosmetik"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_kosmetik" />
+
+            <ImageButton
+                android:id="@+id/kt_makanan"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_makanan" />
+
+            <ImageButton
+                android:id="@+id/kt_pertanian"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_pertanian" />
+
+            <ImageButton
+                android:id="@+id/kt_perlengkapan"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_perlengkapan" />
+
+            <ImageButton
+                android:id="@+id/kt_elektronik"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="center"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_elektronik" />
+
+            <ImageButton
+                android:id="@+id/kt_alat_kantor"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_alat_kantor" />
+
+            <ImageButton
+                android:id="@+id/kt_kendaraan"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_kendaraan" />
+
+            <ImageButton
+                android:id="@+id/kt_hobi"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_hobi" />
+
+            <ImageButton
+                android:id="@+id/kt_kerajinan"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_kerajinan" />
+
+            <ImageButton
+                android:id="@+id/kt_kesehatan_olahraga"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_kesehatan_olahraga" />
+
+            <ImageButton
+                android:id="@+id/kt_bahan_bangunan"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_bahan_bangunan" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollViewJasa"
+        android:layout_width="48dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/hijauMuda"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/kt_angkutan"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_angkutan" />
+
+            <ImageButton
+                android:id="@+id/kt_desain"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_desain" />
+
+            <ImageButton
+                android:id="@+id/kt_editor"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_editor" />
+
+            <ImageButton
+                android:id="@+id/kt_fotografi"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_fotografi" />
+
+            <ImageButton
+                android:id="@+id/kt_servis_elektronik"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_servis_elektronik" />
+
+            <ImageButton
+                android:id="@+id/kt_pariwisata"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_pariwisata" />
+
+            <ImageButton
+                android:id="@+id/kt_bengkel"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_bengkel" />
+
+            <ImageButton
+                android:id="@+id/kt_videografi"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_videografi" />
+
+            <ImageButton
+                android:id="@+id/kt_konstruksi"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_konstruksi" />
+
+            <ImageButton
+                android:id="@+id/kt_jahit"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_jahit" />
+
+            <ImageButton
+                android:id="@+id/kt_acara"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_acara" />
+
+            <ImageButton
+                android:id="@+id/kt_kursus"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_kursus" />
+
+            <ImageButton
+                android:id="@+id/kt_pijat"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_pijat" />
+
+            <ImageButton
+                android:id="@+id/kt_internet"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_internet" />
+
+            <ImageButton
+                android:id="@+id/kt_rias"
+                style="@style/ImageButtonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="pilihKategori"
+                android:scaleType="fitCenter"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/ic_rias" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/tv_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_search">
+
+        <Button
+            android:id="@+id/button_terbaru"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="changeState"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="Terbaru"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/button_terpopuler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="changeState"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="Terpopuler"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

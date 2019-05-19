@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, SearchActivity.class);
         switch (v.getId()){
             case R.id.kt_elektronik:
-                Timber.d("Elektronik");
                 break;
             case R.id.kt_aksesori:
                 break;
@@ -170,6 +169,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.kt_fotografi:
                 break;
+            case R.id.kt_fashion_pria:
+                break;
         }
+        intent.putExtra("kategori", v.getId());
+        startActivity(intent);
     }
 }

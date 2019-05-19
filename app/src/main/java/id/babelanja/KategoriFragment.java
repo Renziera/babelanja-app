@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.Objects;
@@ -64,7 +65,15 @@ public class KategoriFragment extends Fragment {
         tv_search.setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
                 Timber.d("Search called");
-                return true;
+                String searchString = tv_search.getText().toString();
+                if(searchString.length() < 3){
+                    Toast.makeText(getActivity(), "Pencarian minimum 3 karakter", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("search", searchString);
+                startActivity(intent);
+                return false;
             }
             return false;
         });

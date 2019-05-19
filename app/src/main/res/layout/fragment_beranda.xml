@@ -19,6 +19,7 @@
         android:drawableEnd="@drawable/ic_search"
         android:drawablePadding="8dp"
         android:fontFamily="@font/montserrat"
+        android:hint="Apa yang kamu cari ?"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:padding="8dp"

@@ -125,6 +125,10 @@ public class JualanActivity extends AppCompatActivity {
                 tv_nama = itemView.findViewById(R.id.tv_nama);
                 button_edit = itemView.findViewById(R.id.button_edit);
                 cardView = itemView.findViewById(R.id.card);
+                imageView.setVisibility(View.VISIBLE);
+                tv_nama.setVisibility(View.VISIBLE);
+                button_edit.setVisibility(View.VISIBLE);
+                cardView.setVisibility(View.VISIBLE);
             }
         }
     }

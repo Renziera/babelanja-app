@@ -61,7 +61,15 @@ public class BerandaFragment extends Fragment {
         tv_search.setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
                 Timber.d("Search called");
-                return true;
+                String searchString = tv_search.getText().toString();
+                if(searchString.length() < 3){
+                    Toast.makeText(getActivity(), "Pencarian minimum 3 karakter", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                intent.putExtra("search", searchString);
+                startActivity(intent);
+                return false;
             }
             return false;
         });
