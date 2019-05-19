@@ -12,10 +12,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -65,6 +69,28 @@ public class DetailActivity extends AppCompatActivity {
                                 .transform(new FitCenter(), new RoundedCorners(64))
                                 .into(imageViews[i]);
                     }
+
+                    findViewById(R.id.button_keranjang).setOnClickListener(v -> {
+                        Toast.makeText(this, "Sedang proses", Toast.LENGTH_SHORT).show();
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("nama", documentSnapshot.getString("nama"));
+                        data.put("harga", documentSnapshot.getString("harga"));
+                        data.put("foto", imageUrl.get(0));
+                        data.put("ref", documentSnapshot.getReference());
+                        data.put("timestamp", FieldValue.serverTimestamp());
+
+                        db.collection("toko")
+                                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .collection("keranjang")
+                                .add(data)
+                                .addOnCompleteListener(task -> {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(this, "Berhasil masuk keranjang", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(this, "Koneksi bermasalah", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    });
                 })
                 .addOnFailureListener(e -> {
                     Timber.d(e);
