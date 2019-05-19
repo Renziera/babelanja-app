@@ -103,7 +103,9 @@ public class JualanActivity extends AppCompatActivity {
                     .centerCrop()
                     .into(holder.imageView);
             holder.cardView.setOnClickListener(v -> {
-                Toast.makeText(JualanActivity.this, "Ditekan", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(JualanActivity.this, DetailActivity.class);
+                intent.putExtra("path", documentSnapshot.getReference().getPath());
+                startActivity(intent);
             });
         }
 

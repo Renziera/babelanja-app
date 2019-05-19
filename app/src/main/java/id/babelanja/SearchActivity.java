@@ -198,7 +198,8 @@ public class SearchActivity extends AppCompatActivity {
                     .into(holder.imageView);
             holder.card.setOnClickListener(v -> {
                 Intent intent = new Intent(SearchActivity.this, DetailActivity.class);
-
+                intent.putExtra("path", ds.getReference().getPath());
+                startActivity(intent);
             });
         }
 
