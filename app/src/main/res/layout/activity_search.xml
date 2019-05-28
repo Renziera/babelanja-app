@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".SearchActivity">
 
     <ImageButton
@@ -33,6 +35,8 @@
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:textSize="14sp"
+        android:nextFocusUp="@id/tv_search"
+        android:nextFocusLeft="@id/tv_search"
         app:layout_constraintEnd_toStartOf="@+id/toggle"
         app:layout_constraintStart_toEndOf="@+id/button_search"
         app:layout_constraintTop_toTopOf="parent" />
